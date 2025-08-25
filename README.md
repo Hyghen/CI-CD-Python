@@ -1,17 +1,17 @@
-CI-CD-Python — README.md
+# CI-CD-Python — README.md
 
 This README explains how to run, build, and deploy the Python Flask app used in the CI/CD pipeline project.
 
-Repository
+# Repository
 
 https://github.com/Hyghen/CI-CD-Python
 
-Overview
+# Overview
 
 A small Python Flask app that demonstrates a full CI/CD pipeline: local run, Docker image build, GitHub Actions CI to build and push images to Docker Hub, and local deployment on Minikube.
 
 
-This repo contains:
+# This repo contains:
 
 -- app.py — Flask application (listens on port 5000)
 
@@ -24,7 +24,7 @@ This repo contains:
 -- .github/workflows/ci-cd.yml — GitHub Actions workflow (CI + build and push)
 
 
-Prerequisites
+# Prerequisites
 
 -- Git
 
@@ -37,39 +37,39 @@ Prerequisites
 -- Python 3.11 (for local testing)
 
 
-Quick start (local development)
+# Quick start (local development)
 
-Clone the repository:
+# Clone the repository:
 
 -- git clone https://github.com/Hyghen/CI-CD-Python.git
 
 -- cd CI-CD-Python
 
-Create a virtualenv and install dependencies (optional but recommended):
+# Create a virtualenv and install dependencies (optional but recommended):
 
 -- python3 -m venv .venv
 -- source .venv/bin/activate
 -- pip install -r requirements.txt
 
-Run locally:
+# Run locally:
 
 -- python app.py
-# open http://192.168.1.9:5000
+   open http://192.168.1.9:5000
 
 -- Using Docker Compose (local container)
 
 -- Build & run with docker-compose:
 
 -- docker compose up --build
-# open http://localhost:5000
+   open http://localhost:5000
 
-Stop:
+# Stop:
 
 -- docker compose down
 
 -- Build & push image manually (to Docker Hub)
 
-Replace yourdockerhub with your username.
+# Replace yourdockerhub with your username.
 
 -- docker build -t chitransh8824/ci-cd-python:latest .
 -- docker push chitransh8824/ci-cd-python:latest
@@ -77,7 +77,7 @@ Replace yourdockerhub with your username.
 
 Create repository secrets on GitHub: DOCKERHUB_USERNAME, DOCKERHUB_TOKEN, DOCKERHUB_REPO (e.g. yourdockerhub/ci-cd-python).
 
-Workflow facts:
+# Workflow facts:
 
 -- test job: installs dependencies and runs tests
 
@@ -86,15 +86,15 @@ Workflow facts:
 
 Once you push to main, Actions will run automatically.
 
-Deploy to Minikube
+# Deploy to Minikube
 
 
-Start Minikube:
+# Start Minikube:
 
 -- minikube start
 
 
-Deploy using kubectl (simple approach):
+# Deploy using kubectl (simple approach):
 
 -- kubectl create deployment python-app --image=yourdockerhub/ci-cd-python:latest
 
@@ -102,12 +102,12 @@ Deploy using kubectl (simple approach):
 
 -- minikube service python-app --url
 
-Open the returned URL in the browser.
+# Open the returned URL in the browser.
 
 -- Alternative: create k8s/deployment.yaml and k8s/service.yaml and apply them with kubectl apply -f k8s/.
 
 
-Test & verify
+# Test & verify
 
 -- Check pod status: kubectl get pods
 
@@ -116,7 +116,7 @@ Test & verify
 -- Access app: use curl <minikube-url> or kubectl port-forward deploy/python-app 8080:5000 then open http://localhost:8080.
 
 
-Troubleshooting
+# Troubleshooting
 
 -- ImagePullBackOff: ensure image name and tag match Docker Hub and repo is public or credentials available.
 
