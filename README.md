@@ -48,7 +48,9 @@ A small Python Flask app that demonstrates a full CI/CD pipeline: local run, Doc
 # Create a virtualenv and install dependencies (optional but recommended):
 
 -- python3 -m venv .venv
+
 -- source .venv/bin/activate
+
 -- pip install -r requirements.txt
 
 # Run locally:
@@ -72,7 +74,9 @@ A small Python Flask app that demonstrates a full CI/CD pipeline: local run, Doc
 # Replace yourdockerhub with your username.
 
 -- docker build -t chitransh8824/ci-cd-python:latest .
+
 -- docker push chitransh8824/ci-cd-python:latest
+
 -- Configure GitHub Actions (CI/CD)
 
 Create repository secrets on GitHub: DOCKERHUB_USERNAME, DOCKERHUB_TOKEN, DOCKERHUB_REPO (e.g. yourdockerhub/ci-cd-python).
