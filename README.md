@@ -71,11 +71,14 @@ A small Python Flask app that demonstrates a full CI/CD pipeline: local run, Doc
 
 -- Build & push image manually (to Docker Hub)
 
-# Replace yourdockerhub with your username.
+# Replaced name with my dockerhub account
 
 -- docker build -t chitransh8824/ci-cd-python:latest .
 
 -- docker push chitransh8824/ci-cd-python:latest
+
+<img width="1262" height="813" alt="Pushed-" src="https://github.com/user-attachments/assets/bd4b0fb3-bdf8-444b-9e3c-f7c4a8e5abce" />
+
 
 -- Configure GitHub Actions (CI/CD)
 
@@ -86,6 +89,9 @@ Create repository secrets on GitHub: DOCKERHUB_USERNAME, DOCKERHUB_TOKEN, DOCKER
 -- test job: installs dependencies and runs tests
 
 -- build-and-push job: logs into Docker Hub, builds image, and pushes latest and ${{GITHUB_SHA::7}} tag
+
+
+<img width="1182" height="311" alt="CICD-Workflow" src="https://github.com/user-attachments/assets/31c7686c-1749-40d8-a77e-ea496e86b3cf" />
 
 
 Once you push to main, Actions will run automatically.
