@@ -1,4 +1,4 @@
-# CI-CD-Python — README.md
+# First Project  ------>   CI/CD Pipeline with GitHub Actions & Docker (CI-CD-Python) 
 
 This README explains how to run, build, and deploy the Python Flask app used in the CI/CD pipeline project.
 
@@ -133,3 +133,134 @@ Once you push to main, Actions will run automatically.
 -- CrashLoopBackOff: kubectl logs to inspect errors; ensure PORT and app start command are correct.
 
 -- Service not reachable: try kubectl port-forward or minikube service <svc> --url.
+
+
+
+
+# Second Project  ------->  Local DevOps Sandbox for Monitoring & Alerting (All-in-One VM)
+
+### Objective
+
+Set up a monitoring sandbox environment on **RHEL 9** with Prometheus, Grafana, Node Exporter, and Alertmanager. Preconfigure alerts for CPU, disk, and service health so this environment can be reused for DevOps learning and testing.
+
+
+### Tools & Stack
+
+* **Prometheus** (metrics collection)
+
+* **Node Exporter** (system metrics)
+
+* **Grafana** (visualization)
+
+* **Alertmanager** (alerting)
+
+
+
+### Setup Steps
+
+
+# 1. Installed Dependencies
+
+-- sudo dnf install -y wget tar systemd
+
+
+# 2. Created User Accounts
+
+-- sudo useradd --no-create-home --shell /bin/false prometheus
+
+-- sudo useradd --no-create-home --shell /bin/false node_exporter
+
+
+# 3. Installed Prometheus & Node Exporter
+
+* Download official tarballs from Prometheus site.
+
+* Extract, copy binaries to `/usr/local/bin/`.
+
+* Create data directories under `/var/lib/prometheus/`.
+
+
+# 4. Installed Grafana
+
+-- sudo dnf install -y https://dl.grafana.com/oss/release/grafana-10.4.0-1.x86_64.rpm
+
+-- sudo systemctl enable --now grafana-server
+
+
+# 5. Installed Alertmanager
+
+* Download official tarball.
+
+* Extract and move binaries to `/usr/local/bin/`.
+
+* Create working directory at `/etc/alertmanager/`.
+
+
+# 6. Configured Services
+
+* Place Prometheus, Node Exporter, and Alertmanager configs under `/etc/`.
+
+* Set proper ownership (`chown prometheus:prometheus`).
+
+* Create systemd unit files for Prometheus, Node Exporter, and Alertmanager.
+
+* Reload systemd and enable services:
+
+  -- sudo systemctl daemon-reexec
+
+  -- sudo systemctl enable --now prometheus node_exporter alertmanager grafana-server
+  
+
+# 7. Firewall Rules
+
+-- sudo firewall-cmd --add-port=9090/tcp --permanent   # Prometheus
+
+-- sudo firewall-cmd --add-port=9100/tcp --permanent   # Node Exporter
+
+-- sudo firewall-cmd --add-port=9093/tcp --permanent   # Alertmanager
+
+-- sudo firewall-cmd --add-port=3000/tcp --permanent   # Grafana
+
+-- sudo firewall-cmd --reload
+
+
+# 8. Validation & Testing
+
+
+* **Prometheus:** `http://192.168.1.9:9090`
+
+<img width="1372" height="666" alt="Prometheus-console" src="https://github.com/user-attachments/assets/6e5ef577-db5f-4d3e-811e-4123737a1135" />
+
+
+* **Node Exporter:** `http://192.168.1.9:9100/metrics`
+
+<img width="962" height="516" alt="Node-exporter-console" src="https://github.com/user-attachments/assets/c6ee881d-05ee-4b89-abba-1773a7b7dffd" />
+
+
+* **Grafana:** `http://192.168.1.9:3000` (default login: admin/admin)
+
+<img width="1386" height="907" alt="Grafana-console" src="https://github.com/user-attachments/assets/ad3a30bc-7760-4582-b542-36d8087205f2" />
+
+
+* **Alertmanager:** `http://192.168.1.9:9093`
+
+<img width="1507" height="677" alt="Alert-manager-console" src="https://github.com/user-attachments/assets/c216ee2b-fc47-4ed2-aa61-6f6fbbd5d7d8" />
+
+
+**Test Alerts:**
+
+* Create a CPU usage alert rule in Prometheus.
+
+* Stop Node Exporter (`sudo systemctl stop node_exporter`) and check Alertmanager.
+
+* Grafana dashboards should show dropped metrics.
+
+
+# 9. Troubleshooting
+
+* Check logs:
+
+-- sudo journalctl -u prometheus -u node_exporter -u grafana-server -u alertmanager -f
+
+* Ensure firewall ports are open.
+* Verify config files have correct paths and permissions.
