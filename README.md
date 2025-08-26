@@ -1,4 +1,4 @@
-# First Project  ------>   CI/CD Pipeline with GitHub Actions & Docker (CI-CD-Python) 
+# $$$$ First Project  ------>   CI/CD Pipeline with GitHub Actions & Docker (CI-CD-Python) 
 
 This README explains how to run, build, and deploy the Python Flask app used in the CI/CD pipeline project.
 
@@ -137,7 +137,9 @@ Once you push to main, Actions will run automatically.
 
 
 
-# Second Project  ------->  Local DevOps Sandbox for Monitoring & Alerting (All-in-One VM)
+
+
+# $$$$ Second Project  ------->  Local DevOps Sandbox for Monitoring & Alerting (All-in-One VM)
 
 ### Objective
 
@@ -260,7 +262,7 @@ Set up a monitoring sandbox environment on **RHEL 9** with Prometheus, Grafana, 
 
 * Check logs:
 
--- sudo journalctl -u prometheus -u node_exporter -u grafana-server -u alertmanager -f
+    -- sudo journalctl -u prometheus -u node_exporter -u grafana-server -u alertmanager -f
 
 * Ensure firewall ports are open.
 * Verify config files have correct paths and permissions.
